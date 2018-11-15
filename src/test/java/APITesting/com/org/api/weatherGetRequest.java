@@ -50,5 +50,22 @@ public class weatherGetRequest {
 		
 	}
 	
+	// This is for a simple get request for getting weather request by city name and how to manage the response data and verify 
+	@Test
+	public void Test_0003()
+	{
+		// Test_001 : Test_Case_01: get weather data for a city
+		
+				given().
+				param("q","London").
+				param("appid","b6907d289e10d714a6e88b30761fae22").
+				when().
+				get("https://samples.openweathermap.org/data/2.5/weather").
+				then().
+				assertThat().statusCode(200);
+		
+	}
+	
+	
 	
 }
