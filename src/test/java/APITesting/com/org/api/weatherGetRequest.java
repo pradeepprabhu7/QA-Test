@@ -1,5 +1,6 @@
 package APITesting.com.org.api;
 
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,19 +10,20 @@ import com.jayway.restassured.response.ValidatableResponse;
 import static com.jayway.restassured.RestAssured.*;
 
 
+
 public class weatherGetRequest {
 
-	// This is for a simple get request for getting weather request by city name WITHOUT PARAMETERIZATION
 	@Test
+	// This is for a simple get request for getting weather request by city name WITHOUT PARAMETERIZATION
 	public void Test_0001()
 	{
-		// Test_001 : Test_Case_01: get weather data for a city
+		// Test_0001 : Test_Case_01: get weather data for a city
 		
 		Response responsefromget = when(). 
 		get("https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22");
 		
 		// Check the status code is 200 for successful response 
-		Assert.assertEquals(responsefromget.getStatusCode(), 200);
+		AssertJUnit.assertEquals(responsefromget.getStatusCode(), 200);
 		
 		if(responsefromget.getStatusCode()==200)
 		{
@@ -34,12 +36,11 @@ public class weatherGetRequest {
 		
 	}
 	
-	
-	// This is for a simple get request for getting weather request by city name with parameterisations 
 	@Test
+	// This is for a simple get request for getting weather request by city name with parameterisations 
 	public void Test_0002()
 	{
-		// Test_001 : Test_Case_01: get weather data for a city
+		// Test_0002 : Test_Case_01: get weather data for a city
 		
 				given().
 				param("q","London").
@@ -49,23 +50,44 @@ public class weatherGetRequest {
 				then().
 				assertThat().statusCode(200);
 		
+			
 	}
 	
-	// This is for a simple get request for getting weather request by city name and how to capture the response data in string
 	@Test
+	// This is for a simple get request for getting weather request by city name and how to capture the response data in string
 	public void Test_0003()
 	{
-		// Test_001 : Test_Case_01: get weather data for a city
 		
-			ValidatableResponse responsefromget = given().
-				param("q","London").
+		// Test_0003 : Test_Case_01: get weather data for a city
+		Response responsefromget =  given().
+	    	    param("q","London").
 				param("appid","b6907d289e10d714a6e88b30761fae22").
 				when().
-				get("https://samples.openweathermap.org/data/2.5/weather").
-				then().
-				assertThat().statusCode(200);
-				
-				System.out.println(responsefromget);
+				get("https://samples.openweathermap.org/data/2.5/weather");
+			
+				// Check the status code is 200 for successful response 
+				AssertJUnit.assertEquals(responsefromget.getStatusCode(), 200);
+					
+		System.out.println(responsefromget.asString());
+		
+	}
+	
+	@Test
+	// This is for a simple get request for getting weather request by passing different parameters and how to capture the response data in string
+	public void Test_0004()
+	{
+		
+		// Test_0004 : Test_Case_01: get weather data for Delhi, INDIA
+		Response responsefromget =  given().
+	    	    param("zip","201010,in").
+				param("appid","b6907d289e10d714a6e88b30761fae22").
+				when().
+				get("https://samples.openweathermap.org/data/2.5/weather");
+			
+				// Check the status code is 200 for successful response 
+				AssertJUnit.assertEquals(responsefromget.getStatusCode(), 200);
+					
+		System.out.println(responsefromget.asString());
 		
 	}
 	
