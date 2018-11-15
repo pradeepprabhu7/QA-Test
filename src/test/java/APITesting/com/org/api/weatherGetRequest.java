@@ -109,6 +109,27 @@ public class weatherGetRequest {
 		
 	}
 	
-	
+	@Test
+	// This is for a simple get request for getting weather request and extract content for verification
+	public void Test_0006()
+	{
+		
+		// Test_0006 : Test_Case_01: get weather data
+		String weatherdesc = given().
+	    	    param("zip","201010,in").
+				param("appid","b6907d289e10d714a6e88b30761fae22").
+				when().
+				get("https://samples.openweathermap.org/data/2.5/weather").
+				then().
+				contentType("application/JSON").
+				extract().
+				path("weather[0].description","");			
+		
+		System.out.println("Weather Description:---->"+weatherdesc.toString());
+			
+		// This is the place where the assertion and more verification of the data from database or datasource directly.  
+		
+		
+	}
 	
 }
