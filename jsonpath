@@ -48,14 +48,7 @@ $.store.book[2].author                     third author
 $.store.book[0,1]                          first 2 books
 $.store.book                               all books
 $.store.book[1:]                           all books from first
-$.store.book[-1:]                          books from -1
-$.store.book[?(@.isbn)]                    all books with isbn number
-$.store.book[?(@.category="reference")]    all books with category as reference
-$.store.book[?(@.price>15)]                all books with price greater than 15
-find book with title "Sword of Honour"
-find books price less than 10
-find the bicycle price
-find last 3 books in store
+
 
 
 

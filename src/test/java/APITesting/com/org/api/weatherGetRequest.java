@@ -92,5 +92,23 @@ public class weatherGetRequest {
 	}
 	
 	
+	@Test
+	// This is for a simple get request for getting weather request and confirming if the content received is JSON or not 
+	public void Test_0005()
+	{
+		
+		// Test_0005 : Test_Case_01: get weather data
+				given().
+	    	    param("zip","201010,in").
+				param("appid","b6907d289e10d714a6e88b30761fae22").
+				when().
+				get("https://samples.openweathermap.org/data/2.5/weather").
+				then().
+				contentType("application/JSON");			
+			
+		
+	}
+	
+	
 	
 }
